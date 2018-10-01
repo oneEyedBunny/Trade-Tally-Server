@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const {PORT, DATABASE_URL, CLIENT_ORIGIN} = require('./config');
 
 //creates new express app
 const app = express()
@@ -15,11 +17,15 @@ app.use(morgan('common'));
 //creates a static web server, servers static assets
 app.use(express.static('public'));
 
-// Parse request body
+//parse request body
 app.use(express.json());
 
-
-const PORT = process.env.PORT || 3000;
+//Cross-Origin
+app.use(
+    cors({
+        origin: CLIENT_ORIGIN
+    })
+);
 
  app.get('/api/*', (req, res) => {
    res.json({ok: true});
