@@ -29,18 +29,23 @@ userSchema.methods.serialize = function() {
   };
 };
 
+//validate that password is sufficient
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
+//encrpts pw with 10 salt rounds
+userSchema.statics.hashPassword = function(password) {
+  return bcrypt.hash(password, 10);
+}
+
 //defining schema for trade relationships between 2 users
 const tradeRelationshipSchema = mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   tradePartner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
-//
-// tradeRelationshipSchema.virtual('').get(() => {
-//
-// });
-
-//defining schema for trades
+//defining schema for a trade
 const tradeSchema = mongoose.Schema({
   tradeRelationship: { type: mongoose.Schema.Types.ObjectId, ref: 'TradeRelationship', required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -54,23 +59,28 @@ const tradeSchema = mongoose.Schema({
 tradeRelationshipSchema.set('timestamps', true);
 tradeSchema.set('timestamps', true);
 
-//
-tradeSchema.virtual('tradePartnerFullName').get(() => {
-  return `${this.tradePartner.firstName} ${this.tradePartner.lastName}`.trim();
+tradeSchema.pre('find', function() {
+  this.populate('tradePartner');
 });
 
+tradeSchema.pre('findOne', function() {
+  this.populate('tradePartner');
+});
+
+
 //represents how trades are represented outside our app via our api
+//couldn't use virtual with combo of populate method and reference to other model
 tradeSchema.methods.serialize = function() {
   return {
     tradeRelationshipId: this.tradeRelationship._id,
     tradeId: this._id,
     userId: this.user._id,
-    tradePartnerFullName: this.tradePartnerFullName,
+    tradePartnerFullName: `${this.tradePartner.firstName} ${this.tradePartner.lastName}`,
     tradePartnerProfession: this.tradePartner.profession,
     date: this.date,
     serviceDescription: this.serviceDescription,
     amount: this.amount,
-    created: this.createdAt.toDateString(),
+    //created: this.createdAt.toDateString(),
   };
 };
 
