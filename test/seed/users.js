@@ -1,6 +1,5 @@
-[
+module.exports= [
   {
-    "_id":"5b566d443fedefe19eb684d9",
     "firstName": "Sally",
     "lastName": "Harris",
     "username": "pophair",
@@ -9,7 +8,6 @@
     "profession": "Hairstylist"
   },
   {
-    "_id":"5b566d443fedefe19eb684d8",
     "firstName": "Arianna",
     "lastName": "Orton",
     "username": "zenmassage",
@@ -18,7 +16,6 @@
     "profession": "Massage Therapist"
   },
   {
-    "_id":"5b5a357b6445e3cbfb35cea2",
     "firstName": "Tessa",
     "lastName": "Pena",
     "username": "skingoddess",
@@ -27,7 +24,6 @@
     "profession": "Aesthetician"
   },
   {
-    "_id":"5b5a357b6445e3cbfb35cea3",
     "firstName": "Tim",
     "lastName": "Saruk",
     "username": "crackyourback01",
