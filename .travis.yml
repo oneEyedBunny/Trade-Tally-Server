@@ -6,6 +6,6 @@ deploy:
   provider: heroku
   api_key:
     secure: jyqZsClG+2WHD1svy63siWQAjlNRqWGxtR0g6e28E4JW86vKH3MLNpjWcMOXfgniOguxyUHlJFb4L9FIBt4AZADkQtxa2K8xy3t9E0BUPhJMgLiJAKpG62ZiV4QQ0D5vCf2TYwDgOofLW9xE4XIkLuS5o93mtL3L5vII+MiqaS8RMJTHrzLlYQBgkA0s4bxQwjbS/xv+n18JH9GIRR2YH9HGe21SvvHf1c0My/1Jd/af4GD4LiSZi7EqYoYDiUTk41vsgfOJVJkGHJP2cPAtghft06WITy9K/3/8lCMPexyH0Fxocm8t9xsgr/LLKqGoeHjAgrEPyDFKe1v5rV2gAZxIX18es0gHceH7VQsIiypKaTbNdIy7c2T2dw9RUXkdHVMY9kJrbTVMVJjufAySSdPUh80lGevl2UETOc6isc6EevaTc9oSTonX0zYWpgWtMfvTlC0GEM0pTYyMI5bsYhV/ACIHjca7ZAr1n71cZeIlhqjIjJOsoB9PxvMH9wxwR0/8CgbTxzECTxSzlTAzxA+ESO5ZnQtxxT/DeGLdU8C2XUzjCkNHJ/I/qim4UtaJUUzhFZl+v8Dw6rhBFPCbdqA/mF6FWAgjCij8u/oXoDRwAsGTEZccx8fPR6KuX4IEIEKhEBauDCMs+cYBOdQE7O3pTx2FR/a9uK8A/iWzMDU=
-  app: serene-spire-95480
+  app: trade-tally-server
   on:
     repo: oneEyedBunny/Trade-Tally-Server

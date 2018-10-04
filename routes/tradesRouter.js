@@ -12,16 +12,15 @@ const timestamps = require('mongoose-timestamp');
 mongoose.Promise = global.Promise;
 
 // Modularize routes
-const {User, TradeRelationship, Trade} = require('../model');
+const {User, Trade} = require('../model');
+const jwtAuth = require('../auth/jwt-auth');
 
 //all open trades view >> GET all trades that contain the user id
-router.get('/users/:id', (req, res) => {
+router.get('/user/:id', (req, res) => {
   let id = req.params.id;
-  console.log("I'm the user id", id);
   Trade
   .find({ user: id } )
   .then(trades => {
-    console.log("I'm the trades", trades);
     res.json({
       trades: trades.map(trade =>
         trade.serialize()
@@ -70,9 +69,73 @@ router.get('/', (req, res) => {
     });
   });
 
+//post trade >> new trade relationship & trade
+router.post('/', jwtAuth, (req, res) => {
+  const requiredFields =  ['user', 'tradePartner', 'date', 'serviceDescription', 'amount'];
+  for(let i = 0; i < requiredFields.length; i++) {
+    if(!(requiredFields[i] in req.body)) {
+      const errorMessage = (`Missing \`${requiredFields[i]}\` in request body`);
+      console.error(errorMessage);
+      return res.status(400).send(errorMessage);
+    }
+  }
+    Trade
+    .create({
+      user: req.body.user,
+      tradePartner: req.body.tradePartner,
+      date: req.body.date,
+      serviceDescription: req.body.serviceDescription,
+      amount: req.body.amount
+    })
+    .then(trade => {
+        res.status(201).json({message: 'Your trade has been created'})
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'})
+    });
+});
 
-  //post trade >> new trade relationship & trade
-  //delete trade >> DELETE by trade id
-  //update trade details >> PUT by trade id
+
+//delete trade >> DELETE by trade id
+router.delete('/:id', jwtAuth, (req, res) => {
+  Trade
+  .findByIdAndRemove(req.params.id)
+  .then(trade => {
+    console.log(`Deleted trade ${req.params.id}`);
+    res.status(204).end();
+  })
+  .catch(err => {
+    res.status(500).json({message: 'Internal server error'})
+  })
+});
+
+//update trade details >> PUT by trade id
+router.put('/:id', jwtAuth, (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+  let updatedTrade = {};
+  let updateableFields = ['date', 'serviceDescription', 'amount'];
+  console.log('req.body=', req.body);
+  updateableFields.forEach(field => {
+    if(field in req.body) {
+      updatedTrade[field] = req.body[field];
+    }
+  });
+  Trade
+  .findByIdAndUpdate(req.params.id, {$set:updatedTrade})
+  .then(trade => {
+    console.log(`Updating trade with id of ${req.params.id}`);
+    res.status(204).end();
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({error: 'Something went wrong'});
+  });
+});
+
 
 module.exports = router;
