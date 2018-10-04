@@ -1,16 +1,13 @@
 # All Pending Items------
 
 #Trade Routes
-1.GET al trades by user id>> need to add a way to sum all trades by the trade partner. Will need to add another serialize method special for this
-1.create post trade >> new trade relationship & trade
-1.create delete trade >> DELETE by trade id
-1.create update trade details >> PUT by trade id
+1. GET al trades by user id>> need to add a way to sum all trades by the trade partner. Will need to add another serialize method special for this
+1. create post trade >> new trade relationship & trade
+1. create delete trade >> DELETE by trade id
+1. create update trade details >> PUT by trade id
 
 #Auth Routes
-1.
-
-#User Routes
-1.
+1. Seed data isn't working in Postman due to jwt. Will need to fix or use new users that are added through postman
 
 
 #Tests
