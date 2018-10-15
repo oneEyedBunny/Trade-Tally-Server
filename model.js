@@ -22,9 +22,9 @@ const userSchema = mongoose.Schema({
 userSchema.methods.serialize = function() {
   return {
     id: this.id || '',
-    username: this.username || '',
     firstName: this.firstName || '',
     lastName: this.lastName || '',
+    FullName: `${this.firstName} ${this.lastName}` || '',
     profession: this.profession || ''
   };
 };
@@ -67,6 +67,7 @@ tradeSchema.methods.serialize = function() {
     tradeId: this._id,
     userId: this.user._id,
     tradePartnerFullName: `${this.tradePartner.firstName} ${this.tradePartner.lastName}`,
+    tradePartnerId: this.tradePartner._id,
     tradePartnerProfession: this.tradePartner.profession,
     date: this.date,
     serviceDescription: this.serviceDescription,
