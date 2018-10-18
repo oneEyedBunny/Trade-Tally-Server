@@ -24,7 +24,7 @@ userSchema.methods.serialize = function() {
     id: this.id || '',
     firstName: this.firstName || '',
     lastName: this.lastName || '',
-    FullName: `${this.firstName} ${this.lastName}` || '',
+    fullName: `${this.firstName} ${this.lastName}` || '',
     profession: this.profession || ''
   };
 };

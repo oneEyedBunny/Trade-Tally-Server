@@ -71,7 +71,7 @@ router.get('/', (req, res) => {
 
 //post trade >> new trade relationship & trade
 router.post('/', jwtAuth, (req, res) => {
-  const requiredFields =  ['user', 'tradePartner', 'date', 'serviceDescription', 'amount'];
+  const requiredFields =  ['userId', 'tradePartnerId', 'date', 'serviceDescription', 'amount'];
   for(let i = 0; i < requiredFields.length; i++) {
     if(!(requiredFields[i] in req.body)) {
       const errorMessage = (`Missing \`${requiredFields[i]}\` in request body`);
@@ -81,8 +81,8 @@ router.post('/', jwtAuth, (req, res) => {
   }
     Trade
     .create({
-      user: req.body.user,
-      tradePartner: req.body.tradePartner,
+      user: req.body.userId,
+      tradePartner: req.body.tradePartnerId,
       date: req.body.date,
       serviceDescription: req.body.serviceDescription,
       amount: req.body.amount
