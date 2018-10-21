@@ -1,9 +1,6 @@
 # All Pending Items------
 
 #Auth Routes
-1. tradePartnerId isn't populating in postman
-
-#Auth Routes
 1. Seed data isn't working in Postman due to jwt. Will need to fix or use new users that are added through postman** Delete that data
 
 #Trade Routes

@@ -15,11 +15,16 @@ mongoose.Promise = global.Promise;
 const {User, Trade} = require('../model');
 const jwtAuth = require('../auth/jwt-auth');
 
-//all open trades view >> GET all trades that contain the user id
+//testing new route which checks both trade partner id and user id for trades
 router.get('/user/:id', (req, res) => {
   let id = req.params.id;
   Trade
-  .find({ user: id } )
+  .find({
+    $or: [
+     {tradePartner: id},
+     {user: id},
+    ],
+  })
   .then(trades => {
     res.json({
       trades: trades.map(trade =>
@@ -31,6 +36,24 @@ router.get('/user/:id', (req, res) => {
       res.status(500).json({error: 'internal server error'});
     });
   });
+
+
+//all open trades view >> GET all trades that contain the user id
+// router.get('/user/:id', (req, res) => {
+//   let id = req.params.id;
+//   Trade
+//   .find({ tradePartner: id } )
+//   .then(trades => {
+//     res.json({
+//       trades: trades.map(trade =>
+//         trade.serialize()
+//       )});
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({error: 'internal server error'});
+//     });
+//   });
 
 //trade details view >> GET trade by trade id
 router.get('/:id', (req, res) => {
