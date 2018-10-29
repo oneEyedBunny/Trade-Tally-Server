@@ -29,7 +29,8 @@ router.post('/login', localAuth, (req, res, next) => {
     res.json({
       authToken: authToken,
       userId: req.user._id,
-      username: req.user.username
+      username: req.user.username,
+      fullName: req.user.fullName
     });
   })
   .catch(err => {
@@ -44,7 +45,8 @@ router.post('/refresh', jwtAuth, (req, res, next) => {
     res.json({
       authToken: authToken,
       userId: req.user._id,
-      username: req.user.username
+      username: req.user.username,
+      fullName: req.user.fullName
     });
   })
   .catch(err => {

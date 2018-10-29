@@ -126,7 +126,8 @@ router.post('/', (req, res, next) => {
           return res.status(201).json({
             authToken: authToken,
             userId: user._id,
-            username: user.username
+            username: user.username,
+            fullName: user.fullName
           })
        })
       })

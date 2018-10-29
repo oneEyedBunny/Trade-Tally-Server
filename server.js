@@ -12,6 +12,7 @@ const usersRouter = require('./routes/usersRouter');
 const authRouter = require('./routes/authRouter');
 const jwtAuth = require('./auth/jwt-auth');
 const tradesRouter = require('./routes/tradesRouter');
+const inviteRouter = require('./routes/inviteRouter');
 
 //creates new express app
 const app = express()
@@ -36,6 +37,7 @@ app.use(
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/trades', tradesRouter);
+app.use('/invite', inviteRouter);
 
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {

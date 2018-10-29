@@ -7,3 +7,6 @@ exports.CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:3000';
 
 exports.JWT_SECRET = process.env.JWT_SECRET;
 exports.JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
+
+exports.TWILIO_ACCOUNT_SID =process.env.TWILIO_ACCOUNT_SID;
+exports.TWILIO_AUTH_TOKEN =process.env.TWILIO_AUTH_TOKEN;
