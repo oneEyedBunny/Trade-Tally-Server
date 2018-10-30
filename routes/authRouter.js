@@ -30,7 +30,7 @@ router.post('/login', localAuth, (req, res, next) => {
       authToken: authToken,
       userId: req.user._id,
       username: req.user.username,
-      fullName: req.user.fullName
+      fullName: `${req.user.firstName} ${req.user.lastName}`
     });
   })
   .catch(err => {
@@ -46,7 +46,7 @@ router.post('/refresh', jwtAuth, (req, res, next) => {
       authToken: authToken,
       userId: req.user._id,
       username: req.user.username,
-      fullName: req.user.fullName
+      fullName: `${req.user.firstName} ${req.user.lastName}`
     });
   })
   .catch(err => {

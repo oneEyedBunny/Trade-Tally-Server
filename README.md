@@ -5,6 +5,7 @@
 
 #Trade Routes
 1. Add JWT to GET routes
+1. Remove bodyParser from all routes as you've done it in the server file.
 
 #Tests
 1. Create all tests for trades
@@ -12,6 +13,3 @@
 #Misc
 1. Read me images
 1. Read me details
-
-
-testing testing
