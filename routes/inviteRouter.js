@@ -23,7 +23,10 @@ var client = new twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
     body: `Hey ${req.body.firstName}, your friend ${req.body.userFullName} would like you to join Trade Tally, so you two can record trades together. Check us out at https://trade-tally-client.herokuapp.com/`
   })
   .then(message => res.json(message.sid))
-  .done();
+  .catch(err => {
+    console.error("err is", err);
+    res.status(err.status).json({error: err});
+  });
 });
 
 module.exports = router;
