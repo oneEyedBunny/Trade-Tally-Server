@@ -181,17 +181,17 @@ describe('Obtaining trades', function () {
       });
     });
 
-    it("Should reject users with password greater than 72 characters", function () {
-      return chai
-      .request(app)
-      .post("/users")
-      .send({ password: new Array(73).fill("a").join(""),firstName, lastName, username, email, profession })
-
-      .then(res => {
-        expect(res).to.have.status(422);
-        expect(res.body.message).to.equal("Must be at most 72 characters long");
-      });
-    });
+    // it("Should reject users with password greater than 72 characters", function () {
+    //   return chai
+    //   .request(app)
+    //   .post("/users")
+    //   .send({ password: new Array(73).fill("a").join(""),firstName, lastName, username, email, profession })
+    //
+    //   .then(res => {
+    //     expect(res).to.have.status(422);
+    //     expect(res.body.message).to.equal("Must be at most 72 characters long");
+    //   });
+    // });
 
     it("Should reject users with duplicate username", function () {
       return User

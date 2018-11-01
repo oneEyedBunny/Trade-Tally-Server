@@ -26,7 +26,7 @@ module.exports= [
   {
     "firstName": "Tim",
     "lastName": "Saruk",
-    "username": "crackyourback01",
+    "username": "crackyourback07",
     "password":"testing0101",
     "email":"tims@gmail.com",
     "profession": "Chiropractor"
