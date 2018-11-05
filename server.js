@@ -29,16 +29,10 @@ app.use(express.json());
 //Cross-Origin
 app.use(
     cors({
-        origin: CLIENT_ORIGIN
+        origin: true,
+        allowedHeaders: ['Content-Type', 'Authorization']
     })
 );
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization")
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE")
-  next()
-})
 
 //when requests come in, they get routed to the express router
 app.use('/users', usersRouter);
