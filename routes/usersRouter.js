@@ -4,7 +4,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const morgan = require('morgan');
 const jwt = require('jsonwebtoken');

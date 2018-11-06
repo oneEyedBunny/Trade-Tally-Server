@@ -23,10 +23,10 @@ app.use(morgan('common'));
 //creates a static web server, servers static assets
 app.use(express.static('public'));
 
-//parse request body
+//parse request body here instead of all individual routes
 app.use(express.json());
 
-//Cross-Origin
+//Cross-Origin hadling allowing any origin not just Trade Tally client
 app.use(
     cors({
         origin: true,
@@ -45,7 +45,6 @@ app.use('*', function(req, res) {
   res.status(404).json({message: 'Sorry, Not Found'});
 });
 
-//
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
  const err = new Error('Not Found');
